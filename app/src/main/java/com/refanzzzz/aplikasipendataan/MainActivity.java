@@ -1,8 +1,11 @@
 package com.refanzzzz.aplikasipendataan;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import com.google.android.material.button.MaterialButton;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "";
+    private ConfigActivity configAct = new ConfigActivity();
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     MaterialButton btnLogin;
@@ -29,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initElement();
+
+        initWidget();
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -44,10 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnGoogle.setOnClickListener(v -> signIn());
 
-
     }
 
-    void initElement() {
+    void initWidget() {
         btnLogin = (MaterialButton) findViewById(R.id.btnLogin);
         btnGoogle = (ImageView) findViewById(R.id.btnGoogle);
         btnFacebook = (ImageView) findViewById(R.id.btnFacebook);
@@ -79,11 +83,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void navigateToSecondActivity(){
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
         startActivity(intent);
         finish();
     }
-
 
 }
 
